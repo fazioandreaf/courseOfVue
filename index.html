@@ -20,19 +20,29 @@
       :premium="premium" 
       @add-to-cart='updateCart'
       @less-to-cart='updateLessCart'></product-display>
-      <product-display 
-      :detaaails="stringaACaso" @add-to-cart='updateCart' @less-to-cart='updateLessCart'></product-display>
+      <!-- <product-display 
+      :detaaails="stringaACaso" @add-to-cart='updateCart' @less-to-cart='updateLessCart'></product-display> -->
+
     </div>
 
-
+    
+    
+    
+    
+    </form>
 
 
     <!-- Import Js, ovvero app -->
     <script src="./main.js"></script>
     <script src="./components/ProductDisplay.js"></script>
+    <script src="./components/ReviewForm.js"></script>
+    <script src="./components/ReviewList.js"></script>
     <!-- faccio partire il js -->
     <script>
       const mountedApp= app.mount('#app')
     </script>
   </body>
 </html>
+
+
+

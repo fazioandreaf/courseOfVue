@@ -49,9 +49,14 @@ app.component('product-display',{
             :disabled="!inStock">Add to Cart</button>
             <button class="button" v-on:click="addLessToCart">Remove to Cart</button>
           </div>
-        </div>`,
+        </div>
+        <review-list v-if="reviews.length" :reviews="reviews"></review-list>
+        <review-form @review-submitted="addReview"></review-form> 
+
+        `,
             data(){
         return{
+            reviews:[],
             product:'Socks',
             description:'Lorem ipsum dolor',
             // image:'./assets/images/socks_green.jpg',
@@ -73,6 +78,7 @@ app.component('product-display',{
         //  questo è una custom listener
          this.$emit('add-to-cart',this.variants[this.selectedVariant].id)
      },     
+     
      addLessToCart(){
         //  questo è una custom listener
          this.$emit('less-to-cart')
@@ -88,6 +94,9 @@ app.component('product-display',{
     //     this.cart -=1
         
     //  },
+    addReview(review){
+        this.reviews.push(review)
+    }
     },
     // lika calculatore, si aggiorna solo quando serve
     computed:{
