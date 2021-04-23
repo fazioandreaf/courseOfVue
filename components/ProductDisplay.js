@@ -1,5 +1,6 @@
 app.component('product-display',{
     props:{
+        // custom attributs
         premium:{
             type:Boolean,
             //prop validation
@@ -46,7 +47,7 @@ app.component('product-display',{
             <button class="button" v-on:click="addToCart"
             :class="{disabledButton: !inStock}"
             :disabled="!inStock">Add to Cart</button>
-            <button class="button" v-on:click="downToCart">Remove to Cart</button>
+            <button class="button" v-on:click="addLessToCart">Remove to Cart</button>
           </div>
         </div>`,
             data(){
@@ -67,17 +68,26 @@ app.component('product-display',{
         }
     },
     methods:{
+        // funzione che si mette ad ascoltare questo custom listenere
      addToCart(){
-         this.cart +=1;
+        //  questo è una custom listener
+         this.$emit('add-to-cart',this.variants[this.selectedVariant].id)
+     },     
+     addLessToCart(){
+        //  questo è una custom listener
+         this.$emit('less-to-cart')
      },
+
      updateVariant(index){
          this.selectedVariant=index;
      },
-     downToCart(){
-         if(this.cart>0)
-        this.cart -=1
+
+    //  questa funzione nel components non funziona
+    //  downToCart(){
+    //      if(this.cart>0)
+    //     this.cart -=1
         
-     },
+    //  },
     },
     // lika calculatore, si aggiorna solo quando serve
     computed:{
