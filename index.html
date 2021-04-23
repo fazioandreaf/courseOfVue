@@ -16,40 +16,8 @@
     <div id="app">
       <div class="nav-bar"></div>
       <div class="cart">Cart({{cart}})</div>
-        <div class="product-container">
-          <div class="product-image">
-            <img 
-            :class="!inStock?'out-of-stock-img':''"
-            :src="image" >
-          </div>
-          <div class="product-info">
-            <h1>{{title}}</h1>
-            <p v-if="inStock>10">In Stock</p>
-            <p v-else-if="inStock<=10 && inStock>0">Almost sold out</p>
-            <!-- <p v-if="inStock">In Stock</p> -->
-            <!-- lo stesso ma modifica la visibilità -->
-            <!-- <p v-show="inStock">In Stock</p> -->
-            <p v-else>Out of stock</p>
-            <a :href="url">Clicca</a>
-            <p v-if="onSale">{{titleOnSale}}</p>
-            <ul>
-              <li v-for="detail in details">{{detail}}</li>
-            </ul>
-            <div 
-            v-for="(variant,index) in variants" 
-            key="variant.id" 
-            @mouseover="updateVariant(index)"
-            class="color-circle"
-            :style="{backgroundColor: variant.color}">
-            </div>
-            <!-- v-on == @ -->
-            <button class="button" v-on:click="addToCart"
-            :class="{disabledButton: !inStock}"
-            :disabled="!inStock">Add to Cart</button>
-            <button class="button" v-on:click="downToCart">Remove to Cart</button>
-          </div>
-        </div>
-      
+      <product-display :premium="premium"></product-display>
+      <product-display :detaaails="stringaACaso"></product-display>
     </div>
 
 
@@ -57,6 +25,7 @@
 
     <!-- Import Js, ovvero app -->
     <script src="./main.js"></script>
+    <script src="./components/ProductDisplay.js"></script>
     <!-- faccio partire il js -->
     <script>
       const mountedApp= app.mount('#app')
